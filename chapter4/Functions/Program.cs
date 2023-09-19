@@ -1,7 +1,7 @@
 ﻿using static System.Console;
 
 static partial class Program {
-  static string CardinalToOrdinal(int number) => {
+  static string CardinalToOrdinal(int number) {
     switch(number)
     {
       case 11:
@@ -16,7 +16,7 @@ static partial class Program {
           2 => "nd",
           3 => "rd",
           _ => "th"
-        }
+        };
         return $"{number}{suffix}";
     }
   }
@@ -34,7 +34,7 @@ static partial class Program {
     };
   static void RunFibImperative()
   {
-    for (int i = 1; i <= 30; i++)
+    for (int i = 1; i <= 30; ++i)
     {
       WriteLine("The {0} term of the Fibonacci sequence is {1:N0}.",
         arg0: CardinalToOrdinal(i),
@@ -42,16 +42,6 @@ static partial class Program {
     }
   }
 }
-
-// static void RunFibFunctional()
-// {
-//   for (int i = 1; i <= 30; i++)
-//   {
-//     WriteLine("The {0} term of the Fibonacci sequence is {1:N0}.",
-//       arg0: CardinalToOrdinal(i),
-//       arg1: FibFunctional(term: i));
-//   }
-// }
 
 static partial class Program
 {
@@ -104,13 +94,13 @@ static partial class Program
 
       decimal taxToPay = amount * rate;
 
-      WriteLine($"You must pay {taxToPay:C} in tax.");
+      WriteLine($"You must pay {taxToPay:C} in tax."); // format the taxToPay output as currency by using {taxToPay:C}
     }
     static void RunCardinalToOrdinal(int upToNumber = 69)
     {
       for (int number = 1; number <= upToNumber; number++)
       {
-        Writeline($"{CardinalToOrdinal(number)}");
+        WriteLine($"{CardinalToOrdinal(number)}");
       }
     }
 }
