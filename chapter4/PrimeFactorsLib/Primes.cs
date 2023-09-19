@@ -1,39 +1,59 @@
-﻿namespace PrimeFactors
-{
-  public class Primes
-  {
-    public static int[] PrimeNumbers = new[]
-    {
-      997, 991, 983, 977, 971, 967, 953, 
-      947, 941, 937, 929, 919, 911, 907, 887,
-      883, 881, 877, 863, 859, 857, 853, 839, 
-      829, 827, 823, 821, 811, 809, 797, 787,
-      773, 769, 761, 757, 751, 743, 739, 733, 
-      727, 719, 709, 701, 691, 683, 677, 673, 
-      661, 659, 653, 647, 643, 641, 631, 619, 
-      617, 613, 607, 601, 599, 593, 587, 577,
-      571, 569, 563, 557, 547, 541, 523, 521,
-      509, 503, 499, 491, 487, 479, 467, 463,
-      461, 457, 449, 443, 439, 433, 431, 421,
-      419, 409, 401, 397, 389, 383, 379, 373,
-      367, 359, 353, 349, 347, 337, 331, 317,
-      313, 311, 307, 293, 283, 281, 277, 271,
-      269, 263, 257, 251, 241, 239, 233, 229,
-      227, 223, 211, 199, 197, 193, 191, 181,
-      179, 173, 167, 163, 157, 151, 149, 139,
-      137, 131, 127, 113, 109, 107, 103, 101,
-      97, 89, 83, 79, 73, 71, 67, 61, 59, 53,
-      47, 43, 41, 37, 31, 29, 23, 19, 17, 13,
-      11, 7, 5, 3, 2
-    };
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
-    public static string PrimeFactors(int number)
+// need replacing with proper unit test
+class Program
+{
+	static void Main(string[] args)
+	{
+		bool is12Prime = Primes.Functions.IsPrime(number: 12);
+		bool is17Prime = Primes.Functions.IsPrime(number: 17);
+		Console.WriteLine($"12 is prime number: {is12Prime}, 17 is prime number: {is17Prime}");
+		Primes.Functions.GetAllPrimesUpTo(69).ForEach(number => { Console.Write($"{number}, "); });
+		Console.WriteLine(Primes.Functions.PrimeFactorsOf(27));
+	}
+}
+
+namespace Primes
+{
+  public class Functions
+  {
+    public static bool IsPrime(Int32 number)
     {
+      if( number < 2 )
+        return false;
+
+      for(Int32 divisor = 2; divisor * divisor <= number; ++divisor)
+      {
+        if( number % divisor == 0 )
+          return false;
+      }
+
+      return true;
+    }
+
+    public static List<Int32> GetAllPrimesUpTo(Int32 target)
+    {
+      var result = new List<Int32>();
+
+      // Prime numbers are greater than 1 that only have two factors, 1 and itself.
+      for(Int32 number = 0; number <= target; ++number)
+        if( IsPrime(number) )
+          result.Add(number);
+
+      return result;
+    }
+
+    public static string PrimeFactorsOf(int number)
+    {
+      var PrimeNumbers = GetAllPrimesUpTo(number);
+
       string factors = string.Empty;
 
-      foreach (int divisor in PrimeNumbers)
+      foreach (Int32 divisor in PrimeNumbers)
       {
-        int remainder;
+        int remainder = 1; // Generic Initial Value
         do
         {
           remainder = number % divisor;
@@ -41,16 +61,13 @@
           {
             number = number / divisor;
             if (number == 1)
-            {
               factors += $"{divisor}";
-            }
             else
-            {
               factors += $"{divisor} x ";
-            }
           }
         } while (remainder == 0);
       }
+
       return $"{factors}";
     }
   }
