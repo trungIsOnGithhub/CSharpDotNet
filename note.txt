@@ -1,0 +1,17 @@
+C# has 3 types of Integer:
+Int16(+- 2^15), Int32(+- 2^31), Int64(+- 2^63)
+int - Int32 are indeed synonymous but a little different use as int: more familiar, Int32: 32-bit more explicit
+
+Switch Expression: Other way writing Switch() C#:
+string = number switch
+{
+1 => "case 1",
+2 => "case 2",
+_ => "default"
+}
+
+Good Practice: Add XML documentation comments to all your functions.
+
+Popular approach in TDD is to write a (failing) test before implementing target code.
+
+A class library is package of code can be distributed - referenced by other .NET app
