@@ -15,3 +15,18 @@ Good Practice: Add XML documentation comments to all your functions.
 Popular approach in TDD is to write a (failing) test before implementing target code.
 
 A class library is package of code can be distributed - referenced by other .NET app
+
+Composition - Aggregation in OOP -> Seat and Car - Driver and Car
+
+top level class,  delegate, interface : internal
+method: private
+members (unless an interface or enum): private
+members (of interface or enum): public
+constructor: private (if no constructor defined, public default constructor will be automatically defined)
+explicitly implemented interface member: public!
+
+only 1 file-scoped namespace per file
+
+ String interpolation is performed at compile-time
+
+Static constructor used to initialize static data, or perform a particular action that needs to be performed only once
