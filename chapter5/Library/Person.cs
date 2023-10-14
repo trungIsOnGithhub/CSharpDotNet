@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Chapter5.Library
 {
@@ -6,11 +7,13 @@ namespace Chapter5.Library
 	{
 		private readonly string name;
 		private readonly DateTime birthDate;
+		public List<Person> Children;
 		
 		public Person(string _name, DateTime _birthDate)
 		{
 			this.name = _name;
 			this.birthDate = _birthDate;
+			this.Children = new List<>();
 		}
 
 		public string FavoriteFood{ get; set; }
@@ -31,9 +34,9 @@ namespace Chapter5.Library
 			get => (System.DateTime.Today.Year - this.birthDate.Year);
 		}
 
-		public static void SayHello()
+		public void Greeting()
 		{
-			Console.WriteLine("Hello Everyone");
+			Console.WriteLine( String.Format("Hello Everyone, I was born on {0: dd MM yyy}", arg0: this.birthDate) );
 		}
 		
 		public override string ToString()
